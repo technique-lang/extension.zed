@@ -1,0 +1,7 @@
+name = "Technique"
+grammar = "technique"
+path_suffixes = ["t", "tq", "technique"]
+line_comments = []
+tab_size = 4
+hard_tabs = false
+first_line_pattern = "/^%\\s*technique\\s+v1/"
