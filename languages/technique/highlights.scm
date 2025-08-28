@@ -2,7 +2,7 @@
 ; Matching the color scheme from `technique format -R`
 
 ; Metadata/Headers - purple (pragma-like directives)
-(metadata) @preproc
+(metadata) @preproc.technique
 
 ; Procedure declarations - blue for names, brown for types
 (procedure_name) @constructor.technique

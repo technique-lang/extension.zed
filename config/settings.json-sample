@@ -73,7 +73,7 @@
       },
       // Special punctuation
       "punctuation.special.technique": {
-        "color": "#999999",
+        "color": "#75507b",
         "font_weight": 700
       },
       // StepItem list markers
