@@ -1,0 +1,116 @@
+{
+  ...
+  "experimental.theme_overrides": {
+    "syntax": {
+      // Header
+      "preproc.technique": {
+        "color": "#75507b"
+      },
+      // Declaration
+      "constructor.technique": {
+        "color": "#3465a4",
+        "font_weight": 700
+      },
+      // Forma/Types
+      "type.technique": {
+        "color": "#8f5902",
+        "font_weight": 700
+      },
+      // Variable
+      "variable.technique": {
+        "color": "#729fcf",
+        "font_weight": 700
+      },
+      // Invocations/Applications
+      "function.technique": {
+        "color": "#3b5d7d",
+        "font_weight": 700
+      },
+      // Keyword
+      "keyword.technique": {
+        "color": "#75507b",
+        "font_weight": 700
+      },
+      // Numeric
+      "number.technique": {
+        "color": "#ad7fa8",
+        "font_weight": 700
+      },
+      // String
+      "string.technique": {
+        "color": "#4e9a06",
+        "font_weight": 700
+      },
+      // Response/Variant
+      "variant.technique": {
+        "color": "#f57900",
+        "font_weight": 700
+      },
+      // Attribute
+      "attribute.technique": {
+        "color": "#000000",
+        "font_weight": 700
+      },
+      // Operator
+      "operator.technique": {
+        "color": "#999999",
+        "font_weight": 700
+      },
+      // Quote/Punctuation
+      "punctuation.technique": {
+        "color": "#999999",
+        "font_weight": 700
+      },
+      // Punctuation delimiters
+      "punctuation.delimiter.technique": {
+        "color": "#999999",
+        "font_weight": 700
+      },
+      // Punctuation brackets
+      "punctuation.bracket.technique": {
+        "color": "#999999",
+        "font_weight": 700
+      },
+      // Special punctuation
+      "punctuation.special.technique": {
+        "color": "#999999",
+        "font_weight": 700
+      },
+      // StepItem list markers
+      "punctuation.list_marker.technique": {
+        "color": "#000000",
+        "font_weight": 700
+      },
+      // Title
+      "title.technique": {
+        "color": "#000000",
+        "font_weight": 700
+      },
+      // Label (tablet labels)
+      "label.technique": {
+        "color": "#60989a",
+        "font_weight": 700
+      },
+      // Special strings (like labels)
+      "string.special.technique": {
+        "color": "#60989a",
+        "font_weight": 700
+      },
+      // Language (embedded language markers)
+      "property.technique": {
+        "color": "#c4a000",
+        "font_weight": 700
+      },
+      // Constant (alternative for response if variant doesn't work)
+      "constant.technique": {
+        "color": "#f57900",
+        "font_weight": 700
+      },
+      // Text literal (for section text)
+      "text.literal.technique": {
+        "color": null
+      }
+    }
+  },
+  ...
+}
