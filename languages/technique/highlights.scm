@@ -30,6 +30,7 @@
 ; (step_content)
 
 ; Step markers - should be bright/bold
+(section_marker) @punctuation.list_marker.technique
 (step_marker) @punctuation.list_marker.technique
 
 ; Code blocks
@@ -73,10 +74,12 @@
 (response_separator) @punctuation.delimiter.technique
 (response_value) @variant.technique
 
-; Attributes/Roles
+; Attributes (roles and places)
 (attribute_joiner) @operator.technique
 (role_marker) @attribute.technique
 (role_name) @attribute.technique
+(place_marker) @attribute.technique
+(place_name) @attribute.technique
 
 ; Binding expressions
 (binding_marker) @operator.technique
