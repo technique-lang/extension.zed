@@ -23,11 +23,13 @@
 (title_marker) @punctuation.special.technique
 (title_text) @title.technique
 
-; Regular descriptive text - NO highlighting (default text color)
-; Note: We intentionally don't highlight these so they appear as normal text
-; (description)
-; (inline_text)
-; (step_content)
+; Regular descriptive text - NO highlighting. This would be the inherited
+; default value for the colour of normal text, except that that ends up funny
+; colours depending on context. So we force it.
+(description) @text.technique
+(inline_text) @text.technique
+(section_text) @text.technique
+(step_content) @text.technique
 
 ; Step markers - should be bright/bold
 (section_marker) @punctuation.list_marker.technique
@@ -78,8 +80,10 @@
 (attribute_joiner) @operator.technique
 (role_marker) @attribute.technique
 (role_name) @attribute.technique
+(role_reset) @attribute.technique
 (place_marker) @attribute.technique
 (place_name) @attribute.technique
+(place_reset) @attribute.technique
 
 ; Binding expressions
 (binding_marker) @operator.technique

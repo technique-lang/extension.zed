@@ -106,9 +106,9 @@
         "color": "#f57900",
         "font_weight": 700
       },
-      // Text literal (for section text)
-      "text.literal.technique": {
-        "color": null
+      // Default text
+      "text.technique": {
+        "color": "#000000"
       }
     }
   },
