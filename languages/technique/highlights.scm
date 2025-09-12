@@ -80,8 +80,10 @@
 (attribute_joiner) @operator.technique
 (role_marker) @attribute.technique
 (role_name) @attribute.technique
+(role_reset) @attribute.technique
 (place_marker) @attribute.technique
 (place_name) @attribute.technique
+(place_reset) @attribute.technique
 
 ; Binding expressions
 (binding_marker) @operator.technique
