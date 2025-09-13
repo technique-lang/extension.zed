@@ -10,9 +10,8 @@ The Tree Sitter grammar here is referenced by Git URL and commit hash from
 full abstract syntax tree; rather it's only requirement is to produce tokens
 for the purpose of syntax highlighting a Technique file in the the Zed Editor.
 
-In the future this repository will also be the place to specify the
-integration into the Technique language server, but we'll have to write that
-first. `:)`
+This repository also contains the machinery to load and run the Technique
+language server which provides locations of parser errors back to the editor.
 
 ## Enabling
 
