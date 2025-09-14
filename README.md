@@ -30,3 +30,21 @@ other file types.
 A suitable `"experimental.theme_overrides"` value is in
 _config/settings.json-sample_ and can be copied from there into your user
 settings.
+
+You then need to configure the location of your technique binary into your
+_settings.json_ file:
+
+```json
+  "lsp": {
+    "technique": {
+      "binary": {
+        "path": "/home/andrew/.local/bin/technique",
+        "arguments": ["language"],
+        "env": {}
+      }
+    },
+```
+
+perhaps. This will be necessary until we have a stable version of Technique
+with the language server protocol features released on GitHub, at which point
+the extension will be able to download it itself.

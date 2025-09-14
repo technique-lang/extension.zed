@@ -1,29 +1,97 @@
-use zed_extension_api as zed;
+use std::fs;
+
+use zed_extension_api::{self as zed, GithubReleaseOptions};
 
 struct TechniqueExtension {
+    cached_binary_version: Option<String>,
     cached_binary_path: Option<String>,
 }
 
 impl zed::Extension for TechniqueExtension {
     fn new() -> Self {
         Self {
+            cached_binary_version: None,
             cached_binary_path: None,
         }
     }
 
     fn language_server_command(
         &mut self,
-        _language_server_id: &zed::LanguageServerId,
-        _worktree: &zed::Worktree,
-    ) -> Result<zed::Command, String> {        
-        let path = "/home/andrew/src/technique-lang/technique/target/debug/technique";
-        self.cached_binary_path = Some(path.to_string());
-
-        let command = path.to_string();
+        language_server_id: &zed::LanguageServerId,
+        worktree: &zed::Worktree,
+    ) -> Result<zed::Command, String> {
         let args = vec!["language".to_string()];
-        let env = vec![];
+        let env = worktree.shell_env();
 
-        Ok(zed::Command { command, args, env })
+        let path = match &self.cached_binary_path {
+            Some(path) => path.clone(),
+            None => {
+                zed::set_language_server_installation_status(
+                    language_server_id,
+                    &zed_extension_api::LanguageServerInstallationStatus::CheckingForUpdate,
+                );
+
+                let release = zed::latest_github_release(
+                    "technique-lang/technique",
+                    GithubReleaseOptions {
+                        require_assets: true,
+                        pre_release: false,
+                    },
+                )?;
+
+                let (platform, arch) = zed::current_platform();
+                let required = format!(
+                    "technique-{version}-{os}-{arch}.{extension}",
+                    version = release.version,
+                    os = match platform {
+                        zed::Os::Linux => "linux",
+                        _ => return Err("OS not currently supported".into()),
+                    },
+                    arch = match arch {
+                        zed::Architecture::X8664 => "x86_64",
+                        _ => return Err("Architecture not currently supported".into()),
+                    },
+                    extension = match platform {
+                        zed::Os::Linux => "tar.gz",
+                        _ => return Err("OS not currently supported".into()),
+                    },
+                );
+
+                let asset = release
+                    .assets
+                    .iter()
+                    .find(|asset| asset.name == required)
+                    .ok_or(format!("required {:?} not found in release", required))?;
+
+                let dir = format!("technique-{}", release.version);
+                std::fs::create_dir_all(&dir)
+                    .map_err(|_| format!("failed to create directory: {}", dir))?;
+
+                let path = format!("{}/technique", dir);
+                if !fs::metadata(&path).map_or(false, |stat| stat.is_file()) {
+                    zed::set_language_server_installation_status(
+                        language_server_id,
+                        &zed_extension_api::LanguageServerInstallationStatus::Downloading,
+                    );
+
+                    let url = &asset.download_url;
+
+                    zed::download_file(url, &path, zed_extension_api::DownloadedFileType::GzipTar)?;
+
+                    zed::make_file_executable(&path)?;
+                }
+
+                self.cached_binary_path = Some(path.clone());
+                self.cached_binary_version = Some(release.version);
+                path
+            }
+        };
+
+        Ok(zed::Command {
+            command: path,
+            args,
+            env,
+        })
     }
 }
 
