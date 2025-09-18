@@ -45,15 +45,18 @@ impl zed::Extension for TechniqueExtension {
                     version = release.version,
                     os = match platform {
                         zed::Os::Linux => "linux",
-                        _ => return Err("OS not currently supported".into()),
+                        zed::Os::Mac => "darwin",
+                        zed::Os::Windows => "windows",
                     },
                     arch = match arch {
                         zed::Architecture::X8664 => "x86_64",
-                        _ => return Err("Architecture not currently supported".into()),
+                        zed::Architecture::Aarch64 => "aarch64",
+                        zed::Architecture::X86 => "i686",
                     },
                     extension = match platform {
-                        zed::Os::Linux => "tar.gz",
-                        _ => return Err("OS not currently supported".into()),
+                        zed::Os::Linux => "gz",
+                        zed::Os::Mac => "gz",
+                        zed::Os::Windows => "zip",
                     },
                 );
 
