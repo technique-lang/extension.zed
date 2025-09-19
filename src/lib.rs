@@ -79,7 +79,13 @@ impl zed::Extension for TechniqueExtension {
 
                     let url = &asset.download_url;
 
-                    zed::download_file(url, &path, zed_extension_api::DownloadedFileType::GzipTar)?;
+                    let compression = match platform {
+                        zed::Os::Linux => zed_extension_api::DownloadedFileType::Gzip,
+                        zed::Os::Mac => zed_extension_api::DownloadedFileType::Gzip,
+                        zed::Os::Windows => zed_extension_api::DownloadedFileType::Zip,
+                    };
+
+                    zed::download_file(url, &path, compression)?;
 
                     zed::make_file_executable(&path)?;
                 }
