@@ -1,6 +1,9 @@
 use std::fs;
 
-use zed_extension_api::{self as zed, GithubReleaseOptions};
+use zed_extension_api::{
+    self as zed, CodeLabel, CodeLabelSpan, GithubReleaseOptions, Range,
+    lsp::{Symbol, SymbolKind},
+};
 
 struct TechniqueExtension {
     cached_binary_version: Option<String>,
@@ -12,6 +15,51 @@ impl zed::Extension for TechniqueExtension {
         Self {
             cached_binary_version: None,
             cached_binary_path: None,
+        }
+    }
+
+    fn label_for_symbol(
+        &self,
+        _language_server_id: &zed::LanguageServerId,
+        symbol: Symbol,
+    ) -> Option<CodeLabel> {
+        match symbol.kind {
+            SymbolKind::Constructor => {
+                let name = &symbol.name;
+
+                eprintln!("{:?}", name);
+
+                if let Some(pos) = name.find(" :") {
+                    let procedure_name = &name[..pos];
+                    let signature = &name[pos + 2..]; // Skip " :"
+
+                    let mut spans = vec![
+                        // Procedure name with constructor highlight
+                        CodeLabelSpan::literal(procedure_name, Some("constructor".to_string())),
+                        CodeLabelSpan::literal(" ", None),
+                        CodeLabelSpan::literal(":", Some("punctuation.delimiter".to_string())),
+                    ];
+
+                    if signature.len() > 0 {
+                        let signature = &signature[1..]; // Skip " "
+
+                        spans.push(CodeLabelSpan::literal(" ", None));
+                        spans.push(CodeLabelSpan::literal(signature, Some("type".to_string())));
+                    }
+
+                    Some(CodeLabel {
+                        code: name.clone(),
+                        spans,
+                        filter_range: Range {
+                            start: 10,
+                            end: name.len() as u32,
+                        },
+                    })
+                } else {
+                    None
+                }
+            }
+            _ => None,
         }
     }
 
