@@ -1,6 +1,9 @@
 use std::fs;
 
-use zed_extension_api::{self as zed, GithubReleaseOptions};
+use zed_extension_api::{
+    self as zed, CodeLabel, CodeLabelSpan, GithubReleaseOptions, Range,
+    lsp::{Symbol, SymbolKind},
+};
 
 struct TechniqueExtension {
     cached_binary_version: Option<String>,
@@ -12,6 +15,37 @@ impl zed::Extension for TechniqueExtension {
         Self {
             cached_binary_version: None,
             cached_binary_path: None,
+        }
+    }
+
+    fn label_for_symbol(
+        &self,
+        _language_server_id: &zed::LanguageServerId,
+        symbol: Symbol,
+    ) -> Option<CodeLabel> {
+        match symbol.kind {
+            SymbolKind::Constructor => {
+                let name = &symbol.name;
+
+                if let Some(pos) = name.find(" :") {
+                    let procedure_name = &name[..pos];
+
+                    Some(CodeLabel {
+                        code: name.clone(),
+                        spans: vec![CodeLabelSpan::CodeRange(Range {
+                            start: 0,
+                            end: name.len() as u32,
+                        })],
+                        filter_range: Range {
+                            start: 0,
+                            end: procedure_name.len() as u32,
+                        },
+                    })
+                } else {
+                    None
+                }
+            }
+            _ => None,
         }
     }
 
