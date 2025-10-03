@@ -27,32 +27,18 @@ impl zed::Extension for TechniqueExtension {
             SymbolKind::Constructor => {
                 let name = &symbol.name;
 
-                eprintln!("{:?}", name);
-
                 if let Some(pos) = name.find(" :") {
                     let procedure_name = &name[..pos];
-                    let signature = &name[pos + 2..]; // Skip " :"
-
-                    let mut spans = vec![
-                        // Procedure name with constructor highlight
-                        CodeLabelSpan::literal(procedure_name, Some("constructor".to_string())),
-                        CodeLabelSpan::literal(" ", None),
-                        CodeLabelSpan::literal(":", Some("punctuation.delimiter".to_string())),
-                    ];
-
-                    if signature.len() > 0 {
-                        let signature = &signature[1..]; // Skip " "
-
-                        spans.push(CodeLabelSpan::literal(" ", None));
-                        spans.push(CodeLabelSpan::literal(signature, Some("type".to_string())));
-                    }
 
                     Some(CodeLabel {
                         code: name.clone(),
-                        spans,
-                        filter_range: Range {
-                            start: 10,
+                        spans: vec![CodeLabelSpan::CodeRange(Range {
+                            start: 0,
                             end: name.len() as u32,
+                        })],
+                        filter_range: Range {
+                            start: 0,
+                            end: procedure_name.len() as u32,
                         },
                     })
                 } else {
