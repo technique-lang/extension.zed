@@ -21,6 +21,11 @@
         "color": "#729fcf",
         "font_weight": 700
       },
+      // Hole
+      "variable.hole.technique": {
+        "color": "#f57900",
+        "font_weight": 700
+      },
       // Invocations/Applications
       "function.technique": {
         "color": "#3b5d7d",

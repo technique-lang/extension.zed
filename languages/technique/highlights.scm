@@ -12,9 +12,13 @@
 
 ; Forma (types) - brown
 (forma) @type.technique
+(wildcard) @type.technique
 
 ; Parameters and variables - light blue
 (variable) @variable.technique
+
+; Hole  - orange
+(hole) @variable.hole.technique
 (parameters_start_marker) @punctuation.bracket.technique
 (parameters_end_marker) @punctuation.bracket.technique
 (parameters_separator) @punctuation.delimiter.technique
