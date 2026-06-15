@@ -64,12 +64,12 @@
 (foreach_keyword) @keyword.technique
 (in_keyword) @keyword.technique
 
-; Tablets (tables)
-(tablet_start_marker) @punctuation.bracket.technique
-(tablet_end_marker) @punctuation.bracket.technique
+; Lists and tablets
+(list_start_marker) @punctuation.bracket.technique
+(list_end_marker) @punctuation.bracket.technique
 (label_marker) @punctuation.delimiter.technique
 (label_text) @string.special.technique
-(tablet_equals_marker) @operator.technique
+(pair_equals_marker) @operator.technique
 
 ; Response options - orange
 (response_marker) @punctuation.delimiter.technique
