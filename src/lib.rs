@@ -126,7 +126,8 @@ impl TechniqueExtension {
             .ok_or(format!("required {:?} not found in release", required))?;
 
         let dir = format!("technique-{}", release.version);
-        std::fs::create_dir_all(&dir).map_err(|_| format!("failed to create directory: {}", dir))?;
+        std::fs::create_dir_all(&dir)
+            .map_err(|_| format!("failed to create directory: {}", dir))?;
 
         let path = format!("{}/technique", dir);
         if !fs::metadata(&path).map_or(false, |stat| stat.is_file()) {
@@ -149,7 +150,34 @@ impl TechniqueExtension {
         }
 
         self.cached_binary_version = Some(release.version);
+        self.remove_stale_binaries(&dir);
         Ok(path)
+    }
+
+    // Remove previously-downloaded binaries other than the current one so
+    // they don't accumulate across releases. Best-effort.
+    fn remove_stale_binaries(&self, keep: &str) {
+        let Ok(entries) = fs::read_dir(".") else {
+            return;
+        };
+        for entry in entries {
+            let Ok(entry) = entry else {
+                continue;
+            };
+            let Ok(name) = entry.file_name().into_string() else {
+                continue;
+            };
+            if name == keep {
+                continue;
+            }
+            let Some(version) = name.strip_prefix("technique-") else {
+                continue;
+            };
+            let Some(_) = parse_version(version) else {
+                continue;
+            };
+            let _ = fs::remove_dir_all(&name);
+        }
     }
 
     // Locate the most recent previously-downloaded binary, used when unable
@@ -157,7 +185,10 @@ impl TechniqueExtension {
     fn find_latest_local_binary(&mut self) -> Option<String> {
         let mut best: Option<((u32, u32, u32), String, String)> = None;
 
-        for entry in fs::read_dir(".").ok()?.flatten() {
+        for entry in fs::read_dir(".").ok()? {
+            let Ok(entry) = entry else {
+                continue;
+            };
             let Ok(name) = entry.file_name().into_string() else {
                 continue;
             };
