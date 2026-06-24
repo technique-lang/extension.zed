@@ -8,7 +8,7 @@ repository = "https://github.com/technique-lang/extension.zed"
 
 [grammars.technique]
 repository = "https://github.com/technique-lang/tree-sitter-technique"
-commit = "9fc05890e2a32691fa7d2a2c5b1214a881254d17"
+commit = "199af14af6c3711ba02e3551a9448c71e4245e5c"
 
 [language_servers.technique]
 name = "technique"
