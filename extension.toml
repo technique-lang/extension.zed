@@ -1,14 +1,14 @@
 id = "technique"
 name = "Technique"
 description = "Syntax highlighting for the Technique procedure language"
-version = "0.2.6"
+version = "0.2.7"
 schema_version = 1
 authors = ["Andrew Cowie"]
 repository = "https://github.com/technique-lang/extension.zed"
 
 [grammars.technique]
 repository = "https://github.com/technique-lang/tree-sitter-technique"
-commit = "5a0a6e6e3256dee5f1787b460e14559abc563c76"
+commit = "23b8dc9e8ede31e07fbf54966010c240312fcf1d"
 
 [language_servers.technique]
 name = "technique"
