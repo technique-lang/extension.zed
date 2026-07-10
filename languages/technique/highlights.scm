@@ -65,8 +65,15 @@
 
 ; Keywords - purple
 (repeat_keyword) @keyword.technique
+(within_keyword) @keyword.technique
 (foreach_keyword) @keyword.technique
 (in_keyword) @keyword.technique
+
+(cost_marker) @punctuation.delimiter.technique
+(cost_literal
+  (numeric_literal) @number.cost.technique)
+(within_expression
+  (numeric_literal) @number.cost.technique)
 
 ; Lists and tablets
 (list_start_marker) @punctuation.bracket.technique
