@@ -80,7 +80,7 @@
 (list_end_marker) @punctuation.bracket.technique
 (label_marker) @punctuation.delimiter.technique
 (label_text) @string.special.technique
-(pair_equals_marker) @operator.technique
+(pair_marker) @operator.technique
 
 ; Response options - orange
 (response_marker) @punctuation.delimiter.technique
