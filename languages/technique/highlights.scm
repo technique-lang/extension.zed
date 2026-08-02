@@ -65,15 +65,22 @@
 
 ; Keywords - purple
 (repeat_keyword) @keyword.technique
+(within_keyword) @keyword.technique
 (foreach_keyword) @keyword.technique
 (in_keyword) @keyword.technique
+
+(cost_marker) @punctuation.delimiter.technique
+(cost_literal
+  (numeric_literal) @number.cost.technique)
+(within_expression
+  (numeric_literal) @number.cost.technique)
 
 ; Lists and tablets
 (list_start_marker) @punctuation.bracket.technique
 (list_end_marker) @punctuation.bracket.technique
 (label_marker) @punctuation.delimiter.technique
 (label_text) @string.special.technique
-(pair_equals_marker) @operator.technique
+(pair_marker) @operator.technique
 
 ; Response options - orange
 (response_marker) @punctuation.delimiter.technique
