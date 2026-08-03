@@ -8,17 +8,22 @@ and install the language server.
 
 The Tree Sitter grammar here is referenced by Git URL and commit hash from
 **technique-lang/tree-sitter-technique**. Note that that grammar is _not_ a
-complete parser to a full abstract syntax tree; rather it's only requirement
+complete parser to a full abstract syntax tree; rather its only requirement
 is to produce tokens for the purpose of syntax highlighting a Technique file
-in the the Zed Editor.
+in the Zed Editor.
 
 This repository also contains the machinery to download and run the Technique
 language server which provides locations of parser errors back to the editor.
 
 ## Enabling
 
-You can install this extension by opening the "Extensions" tab in the Zed
-Editor (**\<Ctrl\>**+**\<Shift\>**+**X** on Linux) and selecting "Install Dev
+You can obtain this extension from the central Zed Extensions repository by
+searching for `technique` on the Zed [Extensions](https://zed.dev/extensions)
+page or in the "Extensions" tab in the Zed Editor.
+
+If you want to run the extension from the repository you can install this
+extension by likewise opening the "Extensions" tab in the Zed Editor
+(**\<Ctrl\>**+**\<Shift\>**+**X** on Linux) but instead selecting "Install Dev
 Extension".
 
 ## Syntax Highlighting Colours
