@@ -1,6 +1,6 @@
 name = "Technique"
 grammar = "technique"
-path_suffixes = ["t", "tq", "technique"]
+path_suffixes = ["tq"]
 line_comments = []
 tab_size = 4
 hard_tabs = false
