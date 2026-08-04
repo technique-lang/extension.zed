@@ -15,6 +15,35 @@ in the Zed Editor.
 This repository also contains the machinery to download and run the Technique
 language server which provides locations of parser errors back to the editor.
 
+## Features
+
+### Symbol Search:
+
+Searching for symbols will match in procedure names, procedure titles, and
+signatures.
+
+<img src="images/SymbolLookup_Screenshot.png" width="544">
+
+### Document Structure in Outline:
+
+The structure of the Technique document you are writing is visible in the
+Outline.
+
+<img src="images/Outline_Screenshot.png" width="297">
+
+### Syntax Highlighting
+
+Technique source is syntax highlighted in the editor.
+
+<img src="images/Editor_Screenshot.png" width="965">
+
+### Error reporting
+
+If errors are detected by the compiler they are reported on the "Project
+Diagnostics" page.
+
+<img src="images/Error_Screenshot.png" width="931">
+
 ## Enabling
 
 You can obtain this extension from the central Zed Extensions repository by
