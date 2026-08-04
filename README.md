@@ -15,6 +15,16 @@ in the Zed Editor.
 This repository also contains the machinery to download and run the Technique
 language server which provides locations of parser errors back to the editor.
 
+## Features
+
+Symbol search:
+
+<img src="  images/SymbolLookup_Screenshot.png" width="544">
+
+Document structure in Outline:
+
+<img src="images/Outline_Screenshot.png" width="297">
+
 ## Enabling
 
 You can obtain this extension from the central Zed Extensions repository by
